@@ -9,19 +9,19 @@ form.addEventListener("submit", (event) => {
     const state = document.querySelector("input[name='state']:checked").value;
 
     createPromise(delay, state)
-        .then((message) => {
+        .then((delay) => {
             iziToast.success({
                 title: '',
-                message: `${message}`,
+                message: `Fulfilled promise in ${delay}ms`,
                 position: 'topRight',
                 icon: false,
             });
             
         })
-        .catch((error) => {
+        .catch((delay) => {
             iziToast.error({
                 title: '',
-                message: `${error}`,
+                message: `Rejected promise in ${delay}ms`,
                 position: 'topRight',
                 icon: false,
             });
@@ -32,9 +32,9 @@ function createPromise(delay, state) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (state === "fulfilled") {
-                resolve(`✅ Fulfilled promise in ${delay}ms`);
+                resolve(delay);
             } else if (state === "rejected") {
-                reject(`❌ Rejected promise in ${delay}ms`);
+                reject(delay);
             }
         }, delay);
     });

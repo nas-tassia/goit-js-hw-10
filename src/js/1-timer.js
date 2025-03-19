@@ -50,8 +50,10 @@ const options = {
           position: 'topRight',
           icon: false,
         });
-        startBtn.disabled = false;
+        startBtn.disabled = true; 
+        datePicker.disabled = false; 
         return;
+
     }
 
     const time = convertMs(timeLeft);
@@ -66,7 +68,8 @@ const options = {
 startBtn.addEventListener("click", () => {
     if (!NewDate) return;
     clearInterval(timerId);
-    startBtn.disabled = true; 
+    startBtn.disabled = true;
+    datePicker.disabled = true; 
     updateTimer();
     timerId = setInterval(updateTimer, 1000);
 });
